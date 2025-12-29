@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1041767997112",
+    "project_id": "faizan-c31a6",
+    "storage_bucket": "faizan-c31a6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041767997112:android:fd7a1cffdd1a6282829e4d",
+        "android_client_info": {
+          "package_name": "com.awesomeproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041767997112-q86fni96i5actcm4m89r7mue3inedqmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT5H9Qp5LlD4HpULRt6IBaMii7OC-5GCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041767997112-q86fni96i5actcm4m89r7mue3inedqmj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1041767997112-so69nngv4bs5sj7mtr6iopcg1ri5qqnc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.AwesomeProject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
