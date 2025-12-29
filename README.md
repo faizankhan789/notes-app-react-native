@@ -1,97 +1,142 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Notes App - Source Code
 
-# Getting Started
+A feature-rich React Native mobile application for managing personal notes with cloud synchronization.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## What This App Does
 
-## Step 1: Start Metro
+This is a mobile notes application that allows users to:
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- **Create and manage notes** - Write, edit, and organize your thoughts and ideas
+- **Secure authentication** - Sign up and log in using email/password or Google account
+- **Cloud synchronization** - All notes are automatically synced to Firebase Cloud Firestore
+- **Organize with categories** - Label notes as Work, Personal, Ideas, or None
+- **Tag your notes** - Add multiple tags to make notes easier to find
+- **Mark favorites** - Star important notes for quick access
+- **Pin notes** - Keep important notes at the top of your list
+- **Archive old notes** - Hide completed notes without deleting them
+- **Search and filter** - Find notes quickly by title, content, tags, or category
+- **Sort options** - Arrange notes by date, title, or pinned status
+- **Real-time updates** - Changes sync instantly across all your devices
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Folder Structure
 
-```sh
-# Using npm
-npm start
-
-# OR using Yarn
-yarn start
+```
+src/
+├── config/
+│   └── firebase.ts              # Firebase project configuration
+├── context/
+│   ├── AuthContext.tsx          # User authentication logic
+│   └── NotesContext.tsx         # Notes management logic
+└── screens/
+    ├── LoginScreen.tsx          # Login page
+    ├── SignUpScreen.tsx         # Registration page
+    ├── HomeScreen.tsx           # User profile page
+    ├── NotesListScreen.tsx      # Main notes browsing page
+    └── AddEditNoteScreen.tsx    # Create/edit notes page
 ```
 
-## Step 2: Build and run your app
+## Main Features Explained
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+### User Authentication
+- Users can create an account with email and password
+- Users can sign in using their Google account
+- User profiles are stored in Firebase with display name, email, and timestamps
+- Session stays active until user logs out
 
-### Android
+### Notes Management
+- Each note has a title and content
+- Notes can be categorized (Work, Personal, Ideas, or None)
+- Users can add tags to notes for better organization
+- Notes can be marked as favorites (starred)
+- Notes can be pinned to stay at the top
+- Notes can be archived to hide them from main view
+- All notes are private and only visible to the user who created them
 
-```sh
-# Using npm
-npm run android
+### Smart Organization
+- Search through all notes by title, content, or tags
+- Filter notes by category
+- View regular notes, favorites, pinned, or archived notes
+- Sort by most recent, alphabetically by title, or by pinned status
+- Notes display with color-coded category badges and tag chips
 
-# OR using Yarn
-yarn android
-```
+## How to Run This Application
 
-### iOS
+### Prerequisites
+1. Node.js and npm installed on your computer
+2. React Native development environment set up
+3. Firebase project created with Authentication and Firestore enabled
+4. Google Sign-In configured in Firebase Console
+5. For iOS: Xcode and CocoaPods installed
+6. For Android: Android Studio and SDK installed
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+### Installation Steps
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+1. **Install dependencies**
+   - Open terminal and navigate to the project root directory
+   ```bash
+   npm install
+   ```
 
-```sh
-bundle install
-```
+2. **Install iOS dependencies** (Mac only)
+   - Go to the `ios` folder
+   ```bash
+   cd ios
+   pod install
+   cd ..
+   ```
+   - Return to project root
 
-Then, and every time you update your native dependencies, run:
+3. **Configure Firebase**
+   - Place `GoogleService-Info.plist` file inside the `ios/AwesomeProject/` folder
+   - Place `google-services.json` file inside the `android/app/` folder
+   - Update Firebase config in `src/config/firebase.ts` (if needed)
 
-```sh
-bundle exec pod install
-```
+4. **Run the app**
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+   For iOS:
+   ```bash
+   npx react-native run-ios
+   ```
 
-```sh
-# Using npm
-npm run ios
+   For Android:
+   ```bash
+   npx react-native run-android
+   ```
 
-# OR using Yarn
-yarn ios
-```
+   Or use Metro bundler:
+   ```bash
+   npm start
+   ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+### First Time Usage
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+1. Launch the app on your device/emulator
+2. Click "Sign Up" to create a new account
+3. Enter your name, email, and password (or use "Continue with Google")
+4. After signing up, you'll be taken to the Home screen
+5. Navigate to Notes section to start creating notes
+6. Click "+ New" to create your first note
 
-## Step 3: Modify your app
+## Technical Stack
 
-Now that you have successfully run the app, let's make changes!
+- **React Native** - Cross-platform mobile framework
+- **TypeScript** - Type-safe JavaScript
+- **Firebase Authentication** - User management
+- **Firebase Firestore** - Cloud database
+- **Google Sign-In** - OAuth authentication
+- **React Context API** - State management
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## Database Structure
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+### Users Collection
+Each authenticated user has a profile document with their name, email, and account creation date.
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+### Notes Collection
+Each note is stored with:
+- User ID (to ensure privacy)
+- Title and content
+- Category and tags
+- Status flags (favorite, pinned, archived)
+- Creation and update timestamps
 
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+All queries are automatically filtered to show only the logged-in user's notes.
